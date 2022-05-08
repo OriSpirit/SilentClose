@@ -27,11 +27,12 @@ public class Main
     public void init(FMLInitializationEvent event)
     {
         MinecraftForge.EVENT_BUS.register(new GUIHandler());
+        MinecraftForge.EVENT_BUS.register(new com.spiritlight.silentclose.Main());
     }
 
     @SubscribeEvent
     public void onServerConnect(FMLNetworkEvent.ClientConnectedToServerEvent event) {
-        event.getManager().channel().pipeline().addBefore("packet_handler", "packet_handler", new PacketHandler());
+        event.getManager().channel().pipeline().addBefore("packet_handler", "feesh_packet_handler", new PacketHandler());
         System.out.println("Added packet handler to channel pipeline.");
     }
 }
